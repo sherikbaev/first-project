@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магазин одежды</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 5px;
+      color: #333;
+      display: inline-block;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ChicStyles - Ваш магазин стильной одежды</h1>
+  </header>
+
+  <nav>
+    <a href="#section-women">Женщины</a>
+    <a href="#section-men">Мужчины</a>
+    <a href="#section-kids">Дети</a>
+  </nav>
+
+  <section id="section-women">
+    <h2>Женская одежда</h2>
+    <!-- Ваш каталог и описания товаров для женщин здесь -->
+  </section>
+
+  <section id="section-men">
+    <h2>Мужская одежда</h2>
+    <!-- Ваш каталог и описания товаров для мужчин здесь -->
+  </section>
+
+  <section id="section-kids">
+    <h2>Детская одежда</h2>
+    <!-- Ваш каталог и описания товаров для детей здесь -->
+  </section>
+
+  <footer>
+    <p>&copy; 2024 ChicStyles. Все права защищены. | Адрес: ул. Примерная, 123</p>
+  </footer>
+
+  <script>
+    // Обработчик событий для изменения содержимого разделов при клике на ссылки
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const sectionId = link.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+
+        // Изменение URL в адресной строке без перезагрузки страницы
+        history.pushState({}, '', `#${sectionId}`);
+
+        // Скрытие всех разделов, кроме выбранного
+        document.querySelectorAll('section').forEach(sec => {
+          sec.style.display = 'none';
+        });
+        section.style.display = 'block';
+      });
+    });
+
+    // Обработчик событий для обновления раздела при изменении URL
+    window.addEventListener('popstate', () => {
+      const sectionId = location.hash.substring(1);
+      const section = document.getElementById(sectionId);
+
+      // Скрытие всех разделов, кроме выбранного
+      document.querySelectorAll('section').forEach(sec => {
+        sec.style.display = 'none';
+      });
+      section.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
+                            
